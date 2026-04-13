@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whisper List App</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <h1>Whisper List App</h1>
+        <p>Acquisizione dati da BOOKING e SERVICE, lista finale ordinabile.</p>
+      </div>
+      <button id="resetAllBtn" class="ghost danger">Svuota tutto</button>
+    </header>
+
+    <main class="grid">
+      <section class="panel">
+        <h2>1. Sessione BOOKING</h2>
+        <p class="muted">Apre il sito principale in Chromium. Esegui il login lì.</p>
+        <div class="actions">
+          <button id="openMainBtn">Apri BOOKING</button>
+          <button id="scrapeMainBtn" class="secondary">Acquisisci dati</button>
+          <button id="closeMainBtn" class="ghost">Chiudi</button>
+        </div>
+        <div id="mainStatus" class="status">Non attiva</div>
+      </section>
+
+      <section class="panel">
+        <h2>2. Sessione SERVICE</h2>
+        <p class="muted">Apre `service.php` in Chromium. Esegui il secondo login lì.</p>
+        <div class="actions">
+          <button id="openServiceBtn">Apri SERVICE</button>
+          <button id="scrapeServiceBtn" class="secondary">Acquisisci dati</button>
+          <button id="closeServiceBtn" class="ghost">Chiudi</button>
+        </div>
+        <div id="serviceStatus" class="status">Non attiva</div>
+      </section>
+
+      <section class="panel wide">
+        <div class="panel-row">
+          <div>
+            <h2>3. Dati acquisiti</h2>
+            <p class="muted">Le righe salvate in memoria prima della generazione lista.</p>
+          </div>
+          <div class="badge" id="captureCount">0 record</div>
+        </div>
+        <div id="captureTableWrap" class="table-wrap"></div>
+      </section>
+
+      <section class="panel wide">
+        <div class="panel-row">
+          <div>
+            <h2>4. Lista finale</h2>
+            <p class="muted">Drag & drop, spunta con linea orizzontale, cancellazione singola.</p>
+          </div>
+          <button id="generateListBtn">Genera lista</button>
+        </div>
+        <div id="listContainer" class="list"></div>
+      </section>
+    </main>
+  </div>
+
+  <template id="listItemTemplate">
+    <div class="list-item" draggable="true">
+      <div class="drag-handle">☰</div>
+      <label class="check-wrap"><input type="checkbox" /></label>
+      <div class="item-content"></div>
+      <button class="icon-btn delete-btn" title="Cancella">✕</button>
+    </div>
+  </template>
+
+  <script src="/app.js"></script>
+</body>
+</html>
